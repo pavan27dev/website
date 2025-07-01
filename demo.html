@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Pricing Plans</title>
+
+    <!-- Google Font (optional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --accent: #7a6ad8;
+        }
+
+        /* Base reset & typography */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        /* Layout */
+        .pricing-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Card */
+        .plan {
+            background: #fff;
+            border: 2px solid var(--accent);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .plan:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
+        }
+
+        .plan.selected {
+            /* JS‑activated state */
+            transform: scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, .15);
+        }
+
+        /* Headings & price */
+        .plan h2 {
+            font-size: 1.6rem;
+            margin-bottom: .5rem;
+            color: var(--accent);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: .5rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Features list */
+        .features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .features li {
+            margin: .75rem 0;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .features li::before {
+            content: "✔";
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Button */
+        .cta {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: .75rem 2rem;
+            border-radius: 999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background .3s;
+        }
+
+        .plan:hover .cta {
+            background: #5f4bd1;
+        }
+
+        /* Optional ribbon for the middle plan */
+        .ribbon {
+            position: absolute;
+            top: 1rem;
+            right: -3.5rem;
+            transform: rotate(45deg);
+            background: var(--accent);
+            color: #fff;
+            font-size: .75rem;
+            padding: .25rem 3.5rem;
+        }
+
+        /* Dark‑mode polish (optional) */
+        @media (prefers-color-scheme:dark) {
+            body {
+                background: #0e0d18;
+                color: #eaeaea;
+            }
+
+            .plan {
+                background: #1b1a2b;
+                border-color: #5145c7;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="pricing-wrapper">
+
+        <!-- Plan 1 -->
+        <article class="plan">
+            <h2>Starter</h2>
+            <p class="price">$9<span>/mo</span></p>
+            <ul class="features">
+                <li>5 Projects</li>
+                <li>1 GB Storage</li>
+                <li>Email Support</li>
+            </ul>
+            <a href="#" class="cta">Choose Starter</a>
+        </article>
+
+        <!-- Plan 2 (highlighted) -->
+        <article class="plan">
+            <span class="ribbon">Popular</span>
+            <h2>Pro</h2>
+            <p class="price">$29<span>/mo</span></p>
+            <ul class="features">
+                <li>50 Projects</li>
+                <li>10 GB Storage</li>
+                <li>Priority Support</li>
+                <li>Custom Domain</li>
+            </ul>
+            <a href="#" class="cta">Choose Pro</a>
+        </article>
+
+        <!-- Plan 3 -->
+        <article class="plan">
+            <h2>Enterprise</h2>
+            <p class="price">$99<span>/mo</span></p>
+            <ul class="features">
+                <li>Unlimited Projects</li>
+                <li>100 GB Storage</li>
+                <li>24/7 Phone Support</li>
+                <li>Dedicated Manager</li>
+                <li>Advanced Analytics</li>
+            </ul>
+            <a href="#" class="cta">Contact Sales</a>
+        </article>
+
+    </section>
+
+    <!-- Tiny JS to toggle “selected” state when a plan button is clicked -->
+    <script>
+        document.querySelectorAll('.cta').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelectorAll('.plan').forEach(card => card.classList.remove('selected'));
+                btn.closest('.plan').classList.add('selected');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
